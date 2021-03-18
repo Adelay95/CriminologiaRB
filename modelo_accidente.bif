@@ -1,0 +1,68 @@
+network unknown {
+}
+variable Accidente {
+    type discrete [ 2 ] { Accidente_0, Accidente_1 };
+}
+variable Aceite {
+    type discrete [ 2 ] { Aceite_0, Aceite_1 };
+}
+variable Averia {
+    type discrete [ 2 ] { Averia_0, Averia_1 };
+}
+variable Caida {
+    type discrete [ 2 ] { Caida_0, Caida_1 };
+}
+variable Cristales {
+    type discrete [ 2 ] { Cristales_0, Cristales_1 };
+}
+variable MarcasOtroVehiculo {
+    type discrete [ 2 ] { MarcasOtroVehiculo_0, MarcasOtroVehiculo_1 };
+}
+variable MarcasRueda {
+    type discrete [ 2 ] { MarcasRueda_0, MarcasRueda_1 };
+}
+variable Muerte {
+    type discrete [ 2 ] { Muerte_0, Muerte_1 };
+}
+variable RuedaDesgastada {
+    type discrete [ 2 ] { RuedaDesgastada_0, RuedaDesgastada_1 };
+}
+variable Sangre {
+    type discrete [ 2 ] { Sangre_0, Sangre_1 };
+}
+variable Viento {
+    type discrete [ 2 ] { Viento_0, Viento_1 };
+}
+probability ( Accidente | Caida, MarcasOtroVehiculo ) {
+    table 0.99, 0.4, 0.7, 0.1, 0.01, 0.6, 0.3, 0.9 ;
+}
+probability ( Aceite ) {
+    table 0.3, 0.7 ;
+}
+probability ( Averia | Aceite, MarcasRueda ) {
+    table 0.9, 0.4, 0.3, 0.1, 0.1, 0.6, 0.7, 0.9 ;
+}
+probability ( Caida | Averia, Cristales, Viento ) {
+    table 0.99, 0.5, 0.35, 0.1, 0.9, 0.3, 0.2, 0.01, 0.01, 0.5, 0.65, 0.9, 0.1, 0.7, 0.8, 0.99 ;
+}
+probability ( Cristales ) {
+    table 0.9, 0.1 ;
+}
+probability ( MarcasOtroVehiculo ) {
+    table 0.2, 0.8 ;
+}
+probability ( MarcasRueda ) {
+    table 0.1, 0.9 ;
+}
+probability ( Muerte | Accidente, Sangre ) {
+    table 0.9999, 0.7, 0.3, 0.1, 0.0001, 0.3, 0.7, 0.9 ;
+}
+probability ( RuedaDesgastada | MarcasRueda ) {
+    table 0.4, 0.7, 0.6, 0.3 ;
+}
+probability ( Sangre ) {
+    table 0.9, 0.1 ;
+}
+probability ( Viento ) {
+    table 0.7, 0.3 ;
+}
